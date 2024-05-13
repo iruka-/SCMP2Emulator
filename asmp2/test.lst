@@ -1,0 +1,32 @@
+                                       
+0000:                                            org  0 0
+0000:08                                          nop   
+                                       
+FATAL:Symbol Not Found(work + 32)
+test.asm:5:work2 = work + 32
+0001:                                 work2:     =    work + 32 work + 32
+                                       
+0001:                                 work:      =    0x480 0x480
+                                       
+0001:                                 counter0:  =    0 0
+0001:                                 test1:     =    12 12
+                                       
+0001:                                 main:            
+0001:c4 04 36 c4 80 32                           lea  2,work 2,work
+0007:c4 00                                       ld   #0 #0
+0009:ca 00                                       st   counter0(p2) counter0(p2)
+000b:                                 loop:            
+000b:c0 03                                       ld   3(pc) 3(pc)
+000d:ba 00                                       DLD  counter0(p2) counter0(p2) ;B8 22 2      AC, EA <- (EA) - 1
+000f:9c fa                                       jnz  loop loop
+                                       
+
+
+SYMBOL LIST:
+                 = 15	(0xf)
+test1            = 12	(0xc)
+main             = 1	(0x1)
+counter0         = 0	(0x0)
+work             = 1152	(0x480)
+loop             = 11	(0xb)
+work2            = 1	(0x1)

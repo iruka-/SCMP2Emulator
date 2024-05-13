@@ -1,0 +1,164 @@
+                                       
+0000:                                            org  0 0
+0000:08                                          nop   
+                                       
+0001:                                 work:      =    0x480 0x480
+                                       
+0001:                                 counter0:  =    0 0
+0001:                                 counter1:  =    1 1
+0001:                                 counter2:  =    2 2
+0001:                                 counter3:  =    3 3
+                                       
+0001:                                 test1:     =    12 12
+0001:                                 test2:     =    13 13
+0001:                                 test3:     =    14 14
+0001:                                 test4:     =    15 15
+0001:                                 test5:     =    16 16
+0001:                                 test6:     =    17 17
+0001:                                 test7:     =    18 18
+0001:                                 test8:     =    19 19
+0001:                                 main:            
+0001:c4 04 36 c4 80 32                           lea  2,work 2,work
+0007:c4 00                                       ld   #0 #0
+0009:ca 00                                       st   counter0(p2) counter0(p2)
+000b:ca 01                                       st   counter1(p2) counter1(p2)
+000d:ca 02                                       st   counter2(p2) counter2(p2)
+000f:ca 03                                       st   counter3(p2) counter3(p2)
+0011:                                 loop:            
+0011:c0 03                                       ld   3(pc) 3(pc)
+0013:c0 04                                       ld   4(p0) 4(p0)
+0015:c1 05                                       ld   5(p1) 5(p1)
+0017:c2 06                                       ld   6(p2) 6(p2)
+0019:c0 fd                                       ld   -3(pc) -3(pc)
+001b:c0 fc                                       ld   -4(p0) -4(p0)
+001d:c1 fb                                       ld   -5(p1) -5(p1)
+001f:c2 fa                                       ld   -6(p2) -6(p2)
+0021:ca 0c                                       st   test1(p2) test1(p2)
+0023:ca 0d                                       st   test2(p2) test2(p2)
+0025:ca 0e                                       st   test3(p2) test3(p2)
+0027:ca 0f                                       st   test4(p2) test4(p2)
+0029:ca 10                                       st   test5(p2) test5(p2)
+002b:ca 11                                       st   test6(p2) test6(p2)
+002d:ca 12                                       st   test7(p2) test7(p2)
+002f:ca 13                                       st   test8(p2) test8(p2)
+                                       
+0031:ba 00                                       DLD  counter0(p2) counter0(p2) ;B8 22 2      AC, EA <- (EA) - 1
+0033:9c dc                                       jnz  loop loop
+                                       
+0035:ba 01                                       DLD  counter1(p2) counter1(p2) ;B8 22 2      AC, EA <- (EA) - 1
+0037:9c d8                                       jnz  loop loop
+                                       
+0039:ba 02                                       DLD  counter2(p2) counter2(p2) ;B8 22 2      AC, EA <- (EA) - 1
+003b:9c d4                                       jnz  loop loop
+                                       
+003d:00                                          halt  
+                                       
+003e:ba 03                                       DLD  counter3(p2) counter3(p2) ;B8 22 2      AC, EA <- (EA) - 1
+0040:9c cf                                       jnz  loop loop
+                                       
+0042:00                                          halt  
+                                       
+0043:c0 01                                       ld   1 1
+0045:c8 7f                                       st   127 127
+0047:c4 01                                       ldi  1 1
+0049:f4 02                                       adi  2 2
+004b:c0 03                                       ld   3(pc) 3(pc)
+004d:c0 04                                       ld   4(p0) 4(p0)
+004f:c1 05                                       ld   5(p1) 5(p1)
+0051:c2 06                                       ld   6(p2) 6(p2)
+0053:c3 07                                       ld   7(p3) 7(p3)
+0055:c0 fd                                       ld   -3(pc) -3(pc)
+0057:c0 fc                                       ld   -4(p0) -4(p0)
+0059:c1 fb                                       ld   -5(p1) -5(p1)
+005b:c2 fa                                       ld   -6(p2) -6(p2)
+005d:c3 f9                                       ld   -7(p3) -7(p3)
+005f:c5 03                                       ld   @3(pc) @3(pc)
+0061:c5 04                                       ld   @4(p0) @4(p0)
+0063:ce 05                                       st   @5(p1) @5(p1)
+0065:cf 06                                       st   @6(p2) @6(p2)
+0067:c8 07                                       ld   @7(p3) @7(p3)
+0069:c4 01                                       ld   #1 #1
+006b:d4 02                                       and  #2 #2
+006d:36                                          xpah 2 2
+006e:32                                          xpal 2 2
+                                       
+                                       
+                                       
+                                       
+006f:90 02                                       jmp  L1 L1
+0071:94 00                                       jp   L1 L1
+0073:                                 L1:              
+0073:98 fe                                       jz   L1 L1
+0075:9c fc                                       jnz  L1 L1
+                                       
+0077:ab 03                                       ILD  3(p3) 3(p3) ;A8 22 2      AC, EA <- (EA) + 1
+0079:bb 04                                       DLD  4(p3) 4(p3) ;B8 22 2      AC, EA <- (EA) - 1
+007b:40                                          LDE   ;40  6 1      AC <- (E)
+007c:01                                          XAE   ;01  7 1      (AC) <-> (E)
+007d:50                                          ANE   ;50  6 1      AC <- (AC) & (E)
+007e:58                                          ORE   ;58  6 1      AC <- (AC) | (E)
+007f:60                                          XRE   ;60  6 1      AC <- (AC) ^ (E)
+                                       
+0080:68                                          DAE   ;68 11 1  *   AC <- (AC) + (E) + (CY/L) {BCD format}
+0081:70                                          ADE   ;70  7 1  **  AC <- (AC) + (E) + (CY/L)
+0082:78                                          CAE   ;78  8 1  **  AC <- (AC) + !(E) + (CY/L)
+0083:31                                          XPAL 1 1 ;30  8 1      (AC) <-> (PL)
+0084:36                                          XPAH 2 2 ;34  8 1      (AC) <-> (PH)
+0085:3f                                          XPPC 3 3 ;3C  7 1      (PC) <-> (PTR)
+                                       ;	//    LDI    L(SUBR1)
+0086:19                                          SIO   ;19  5 1      Serial Input/Output
+0087:1c                                          SR    ;1C  5 1      Shift Right
+0088:1d                                          SRL   ;1D  5 1      Shift Right with Link
+0089:1e                                          RR    ;1E  5 1      Rotate Right
+008a:1f                                          RRL   ;1F  5 1  *   Rotate Right with Link
+008b:02                                          CCL   ;02  5 1      CY/L <- 0
+008c:03                                          SCL   ;03  5 1      CY/L <- 1
+008d:05                                          IEN   ;05  6 1      IE <- 1
+008e:04                                          DINT  ;04  6 1      IE <- 0
+008f:06                                          CSA   ;06  5 1      AC <- (SR)
+0090:07                                          CAS   ;07  6 1      SR <- (AC)
+0091:08                                          NOP   ;08  5 1      No operation
+0092:8f ff                                       DLY  255 255 ;8F ?? 2      Delay
+                                       
+0094:c4 12                                       ld   H(0x1234) H(0x1234)
+0096:c4 34                                       ld   L(0x1234) L(0x1234)
+0098:c4 12                                       ldh  0x1234 0x1234
+009a:c4 34                                       ldL  0x1234 0x1234
+009c:c4 00                                       ldh  sub sub
+009e:c4 af                                       ldL  sub sub
+                                       
+00a0:08                                          nop   
+                                       
+                                       
+00a1:c4 00 36 c4 af 32                           lea  2,sub 2,sub
+                                       
+00a7:c4 00 37 c4 af 33 3f                        call sub sub
+00ae:00                                          halt  
+                                       
+00af:                                 sub:             
+00af:3f                                          ret   
+                                       
+00b0:00                                          HALT  ;00  8 1      Output Halt pulse
+                                       
+                                       ;
+
+
+SYMBOL LIST:
+                 = 176	(0xb0)
+L1               = 115	(0x73)
+test1            = 12	(0xc)
+test2            = 13	(0xd)
+test3            = 14	(0xe)
+test4            = 15	(0xf)
+test5            = 16	(0x10)
+test6            = 17	(0x11)
+test7            = 18	(0x12)
+test8            = 19	(0x13)
+sub              = 175	(0xaf)
+main             = 1	(0x1)
+counter0         = 0	(0x0)
+counter1         = 1	(0x1)
+counter2         = 2	(0x2)
+counter3         = 3	(0x3)
+work             = 1152	(0x480)
+loop             = 17	(0x11)
